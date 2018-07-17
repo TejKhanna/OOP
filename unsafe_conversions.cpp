@@ -2,13 +2,23 @@
 
 int main(){
 
+{
 //double to int to double
     double a = 12.3456;
     cout << a << endl;
     int b = a;
     cout << b << endl;
     double c = b;
-    cout << c;
+    cout << c << endl << endl;
+}
+{
 
-//double to
+//double to char to double
+    double a = 12.3456;
+    cout  << "double: " << a << endl;
+    char b = a;
+    cout << "char: " <<  b << endl;
+    double c = b;
+    cout << "double: " << c << endl << endl;
+}
 }
