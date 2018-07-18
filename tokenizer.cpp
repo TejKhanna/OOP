@@ -4,6 +4,7 @@ class Token {
     public:
         char kind;
         double val;
+        char incorrect_val;
 };
  Token get_token();
 
@@ -20,6 +21,9 @@ Token get_token(){
             cin >> val;
             return Token{'n',val};
         }
+        default:{
+            return Token{'x',0.0,ch};
+        }
     }
 };
 
@@ -30,9 +34,10 @@ int main(){
         tokens.push_back(t);
     }
     for(Token tok : tokens){
-        if(tok.kind == 'n'){
+        if(tok.kind == 'x')
+            cout << "An invalid token of value " << tok.incorrect_val << endl;
+        else if(tok.kind == 'n')
             cout << "A number of value " << tok.val << endl;
-        }
         else{
             cout << "A token of type " << tok.kind << endl;
         }
