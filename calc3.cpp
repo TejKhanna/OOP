@@ -151,6 +151,8 @@ double primary(){
         return -primary();
     case '+':
         return primary();
+    case quit:
+        return 0;
     default:
         error("primary expected");
     }
