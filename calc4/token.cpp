@@ -23,6 +23,7 @@ Token Token_stream::get(){
         case'*':
         case'/':
         case'%':
+        case'=':
             return Token{ch};
         case '0':
         case '1':

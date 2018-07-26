@@ -1,5 +1,6 @@
 #include "std_lib_facilities.h"
 #include "token.h"
+#include "vars.h"
 
 
 void print_token(Token t){
@@ -98,10 +99,30 @@ double primary(Token_stream& ts){
     default:
         error("primary expected");
     }
+return 0;
 }
 
-Token_stream statement(){ //this is where the logic for variables will go
-    if(name == expression())
+double statement(Token_stream& ts)
+{ //this is where the logic for variables will go
+    Token t = ts.get();
+    if(t.kind == name){
+        Token var =t;
+        t = ts.get();
+        if(t.kind == '='){
+            double d = expression(ts);
+            set_value(var.name, d);
+            return d;
+            }
+        else if(t.kind == print){
+            ts.putback(t);
+            return get_value(var.name);
+        }
+        ts.putback(t);
+        ts.putback(var);
+        return expression(ts);
+        }
+        ts.putback(t);
+        return expression(ts);
 }
 
 void clean_up_mess(Token_stream& ts){
