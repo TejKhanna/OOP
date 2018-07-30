@@ -8,6 +8,18 @@ Date::Date (int yy, int mm, int dd)
 		throw Invalid{};
 }
 
+const Date& default_date()
+{
+	static Date d {2001,1,1};
+	return d;
+}
+
+// Date::Date()
+// 	:y{default_date().y},
+// 	m{default_date().m},
+// 	d{default_date().d}
+// {}
+
 bool Date::leap_year(){
 	if(y%4 == 0)
 		return true;
@@ -17,9 +29,27 @@ bool Date::leap_year(){
 
 // The next three functions are operator overloads. They allow us to use == != and cout with the date type.
 
+
+
 ostream& operator << (ostream& os, const Date d){
+//	Vector 
+
 	return os << '(' << d.year() << ',' << d.month() << ',' << d.day() << ')';
 }
+
+// istream& operator >> (istream& is, const Date& d){
+// 	int user_year, user_month, user_day;
+// 	char ch1, ch2, ch3, ch4;
+// 	is >> ch1 >> user_year >> ch2 >> user_month >> ch3 >> user_day >> ch4;
+// 	// if(!is_valid()) return is_valid;
+// 	if(ch1!='(' || ch2!=',' || ch3!=',' || ch4!=')')
+// 	{
+// 		cout << "There seems to be an error with your input.";
+// 	}
+
+// 	d = Date{user_year,user_month,user_day};
+// 	return is;
+// }
 
 bool operator == (const Date& d1, const Date d2){
 	if (d1.day() == d2.day() && d1.month() == d2.month() && d1.year() == d2.year())
